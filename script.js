@@ -9,11 +9,11 @@
   const nav = document.querySelector(".side-nav")
   const navDots = nav ? Array.from(nav.querySelectorAll(".nav-dot")) : []
 
-  // Theme: read persisted preference or default to dark like the React version
-  const THEME_KEY = "portfolio_theme"
+  // Theme: use a new key so default switches to dark for everyone once
+  const THEME_KEY = "portfolio_theme_v2"
   const stored = localStorage.getItem(THEME_KEY)
-  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-  let isDark = stored ? stored === "dark" : true || prefersDark
+  // Default to dark when no saved preference exists
+  let isDark = stored ? stored === "dark" : true
 
   function applyTheme() {
     docEl.classList.toggle("dark", isDark)
